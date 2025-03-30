@@ -15,8 +15,7 @@ Tähän tulee tiivistelmä
 - SSD: Samsung 1TB 980 SSD-levy, M.2 2280, PCIe 3.0 x4, NVMe 1.4, sekä Kingston 1TB A2000 NVMe PCIe SSD-levy, M.2 2280, 2200/2000
 - Käyttöjärjestelmä: Edition	Windows 10 Pro Version	22H2
 - Virtuaaliympäristö: VirtualBox Version 7.0.14 r161095 (Qt5.15.2)
-- Operating System: Debian GNU/Linux 12 (bookworm)  
-- Kernel: Linux 6.1.0-25-amd64
+- Operating System: Kali Linux
 
 ## tehtävä1
 

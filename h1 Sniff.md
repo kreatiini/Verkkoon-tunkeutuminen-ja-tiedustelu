@@ -40,37 +40,34 @@ Tässä kohdassa ei ollut haasteita.
 
 ## b) Ei voi kalastaa
 Tehtävässä piti osoittaa, että laite on irti verkosta. Otin netin pois Kali virtuaalikoneesta ja testasin sekä selailemella että ping komennolla:
-PING
-
-BROWSER
+![ping](https://raw.githubusercontent.com/kreatiini/Verkkoon-tunkeutuminen-ja-tiedustelu/refs/heads/main/kuvat/h1/ping.png)
+![browser](https://raw.githubusercontent.com/kreatiini/Verkkoon-tunkeutuminen-ja-tiedustelu/refs/heads/main/kuvat/h1/browser.png)
 
 ## c) Wireshark
 Kali Linuxissa on Wireshark valmiiksi asennettuna. Ei siis tarvinnut tehdä asennustoimenpiteitä. 
 Käynnistin Wiresharkin ja valitsin "eth0" interfacen. Tämän jälkeen selailin hieman verkossa saadakseni luotua liikennettä. Samalla näin Wiresharkiin ilmestyvän dataa. Liikennettä näkyi joten homma rokkaa:
 
+![wireshark](https://raw.githubusercontent.com/kreatiini/Verkkoon-tunkeutuminen-ja-tiedustelu/refs/heads/main/kuvat/h1/Wireshark1.png)
 
    
 ## d) Oikeesti TCP/IP
-TCPIP1
+![TCPIP](https://github.com/user-attachments/assets/6457c3c1-8cc8-4f5e-a382-bd375e7c6c76)
+
 Ylemmässä kuvassa näkyy kaikki 4 kerrosta: 1. Link Layer 2. Internet Layer 3. Transport Layer 4. Application Layer
  - Link Layer: Link Layer kohdassa näkyy destination mac address ja source mac address.
  - Internet Layer: Tässä kohdassa näkyy source ip address ja destination ip address. Eli mihin ip osoitteeseen paketti on matkalla ja mistä se on tulossa.
  - Transport layer: tässä näkyy käytetty protokolla eli TCP. Lähtöportti sekä kohdeportti. 
  - Application Layer: Siitä näkee että kyseessä on HTTP protokolla. Tarkemmista tiedoista löytyy myös palvelin ja data mitä siirretään. 
-### Lähteet:
-- Tehtävän lähteet tähän
+
 
 ## e) Mitäs tuli surffailtua?
 Tutkailtuani kaappausta ensimmäinen ajatukseni oli, että kyseessä oli kirjautuminen johonkin. Ensin otetaan yhteys itse sivulle ja tämän jälkeen kirjaudutaan sinne sisään. En kuitenkaan ole tästä täysin varma. Itse kaappaus kestää vajaan 8 sekuntia joten ajallisestikin se voisi täsmätä. Vain yksi kone ottaa yhteyttä palvelimille jotka vastailevat. Tässä käytetään TCP protokollaa, TLS protokollaa, ARP protokollaa, DNS protokollaa, IP protokollaa, HTTP protokollaa, UDP protokollaa. Itse kaappaus on aika pieni.
 
-### Lähteet:
-- Tehtävän lähteet tähän
+
 
 ## f) Mitä selainta käyttäjä käyttää?
-Selailin pitkään läpi paketteja. En onnistunut löytämään yhtään HTTP pakettia ilman TLS salausta. En siis näe salaamatonta user-agent kenttää josta saisin tiedot tähän. En myöskään löytänyt toista tapaa selvittää selainta tai verkkokorttia. 
+Selailin pitkään läpi paketteja. En onnistunut löytämään yhtään HTTP pakettia ilman TLS salausta. En siis näe salaamatonta user-agent kenttää josta saisin tiedot tähän. 
 
-### Lähteet:
-- Tehtävän lähteet tähän
 
 ## f) Mitä verkkokorttia käyttäjä käyttää?
 Kokeilin MAC osoitteella löytää OUI hausta verkkokortin merkkiä. En kuitenkaan saanut tuloksia. 
@@ -81,27 +78,34 @@ Kokeilin MAC osoitteella löytää OUI hausta verkkokortin merkkiä. En kuitenka
 ## f) Millä weppipalvelimilla käyttäjä on selaillut?
 Ainakin terokarvinen.com, google.com,  
 
-### Lähteet:
-- Tehtävän lähteet tähän
+
 
 
 ## g) Analyysi
 Valitsin tähän 2 tcp kättelyn pakettia.
 Ensimmäinen paketti:
+![paketti1](https://raw.githubusercontent.com/kreatiini/Verkkoon-tunkeutuminen-ja-tiedustelu/refs/heads/main/kuvat/h1/packet1.1.png)
+
+![paketti1.2](https://raw.githubusercontent.com/kreatiini/Verkkoon-tunkeutuminen-ja-tiedustelu/refs/heads/main/kuvat/h1/packet1.2.png)
+
  - Ethernet kohta: Siitä näkee Lähde MAC osoitteen ja kohteen MAC osoitteen. 
  - Internet Protocol Version 4: Kertoo että käytössä on IPV4. PAketti on lähtenyt osoitteesta 10.0.2.15 ja kohde on 216.58.209.195. Siinä näkyy myös Time To Live joka on 64. Niin monta ''hyppyä'' paketti tekee ennenkuin se putoaa pois. Siitä näkee myös headerin ja paketin koon. Näkyy myös että paketti tulee TCP protokollan kautta. Checksumin avulla tarkistetaan onko paketti korruptoitunut.
 - TCP kohdassa näkyy lähtöportti ja kohdeportti. Siinä näkyy myös sequence number joka kertoo monesko TCP yhteys on kyseessä. Tämä on ensimmäinen.
 Tiedoista näkee että tämä keskustelu on kesken eli tässä vaiheessa 3 way handshake on vielä kesken. Sieltä löytyy myös Header osion koko ja liput. Eli nyt on kyseessä SYN pyyntö ennen tiedon siirtoa. Client ja Server varmistuvat siis että tiedonsiirto voi alkaa. 
 
 Toinen paketti:
+
+![paketti2](https://raw.githubusercontent.com/kreatiini/Verkkoon-tunkeutuminen-ja-tiedustelu/refs/heads/main/kuvat/h1/packet2.1.png)
+
+![paketti2.2](https://raw.githubusercontent.com/kreatiini/Verkkoon-tunkeutuminen-ja-tiedustelu/refs/heads/main/kuvat/h1/packet2.2.png)
+
 Toisessa paketissa on kyseessä SYN ACK paketti. 
 - Ethernet kentästä näkee taas lähtö ja kohde MAC osoitteet. 
 - Internet Protocol kentästä näkyy lähtö ja kohde IP osoitteet. Nyt siis nämä ovat toisinpäin kuin edellisessä paketissa.  TTL kenttä pysyy samana sillä 64 on yleinen oletus TTL.
 - TCP kentässä myös portit ovat kääntyneet tietysti toisinpäin. Nyt kyseessä on SYN+ACK. Sequence number pysyy samana sillä kyseessä on edelleen sama kättely. Wireshark kertoo myös että tämä on ACK segment edelliseen pakettiin liittyen. 
 
 
-### Lähteet:
-- Tehtävän lähteet tähän
+
 
 ## Lähteet:
   -  Tehtävät: Karvinen & Iso-Anttila 2025: Verkkoon tunkeutuminen ja tiedustelu Luettavissa: [https://terokarvinen.com/palvelinten-hallinta/](https://terokarvinen.com/verkkoon-tunkeutuminen-ja-tiedustelu/)

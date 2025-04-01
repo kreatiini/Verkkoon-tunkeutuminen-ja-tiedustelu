@@ -4,7 +4,19 @@
 Tähän tulee tiivistelmä 
 
 ### Tehtävänanto:
-   Tähän tulee tehtävänanto
+       x) Lue ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)
+        Karvinen 2025: Wireshark - Getting Started
+        Karvinen 2025: Network Interface Names on Linux
+    a) Linux. Asenna Debian tai Kali Linux virtuaalikoneeseen. (Tätä alakohtaa ei poikkeuksellisesti tarvitse raportoida, jos sinulla ei ole mitään ongelmia. Jos on mitään haasteita, tee täsmällinen raportti)
+    b) Ei voi kalastaa. Osoita, että pystyt katkaisemaan ja palauttamaan virtuaalikoneen Internet-yhteyden.
+    c) Wireshark. Asenna Wireshark. Sieppaa liikennettä Wiresharkilla. (Vain omaa liikennettäsi. Voit käyttää tähän esimerkiksi virtuaalikonetta).
+    d) Oikeesti TCP/IP. Osoita TCP/IP-mallin neljä kerrosta yhdestä siepatusta paketista. Voit selityksen tueksi laatikoida ne ruutukaappauksesta.
+    e) Mitäs tuli surffattua? Avaa surfing-secure.pcap. Tutustu siihen pintapuolisesti ja kuvaile, millainen kaappaus on kyseessä. Tässä siis vain lyhyesti ja yleisellä tasolla. Voit esimerkiksi vilkaista, montako konetta näkyy, mitä protokollia pistää silmään. Määrästä voit arvioida esimerkiksi pakettien lukumäärää, kaappauksen kokoa ja kestoa.
+    f) Mitä selainta käyttäjä käyttää? surfing-secure.pcap
+    g) Minkä merkkinen verkkokortti käyttäjällä on? surfing-secure.pcap
+    h) Millä weppipalvelimella käyttäjä on surffaillut? surfing-secure.pcap
+        Huonoja uutisia: yhteys on suojattu TLS-salauksella.
+    i) Analyysi. Sieppaa pieni määrä omaa liikennettäsi. Analysoi se, eli selitä mahdollisimman perusteellisesti, mitä tapahtuu. (Tässä pääpaino on siis analyysillä ja selityksellä, joten liikennettä kannattaa ottaa tarkasteluun todella vähän - vaikka vain pari pakettia. Gurut huomio: Selitä myös mielestäsi yksinkertaiset asiat.)
   
 ### Tietokoneen tiedot: 
 - Näytönohjain: Asus GeForce RTX 3070 Ti ROG Strix - OC Edition
@@ -17,32 +29,64 @@ Tähän tulee tiivistelmä
 - Virtuaaliympäristö: VirtualBox Version 7.0.14 r161095 (Qt5.15.2)
 - Operating System: Kali Linux
 
-## tehtävä1
+## x) Lue ja tiivistä
 
 ### Lähteet:
 - Tehtävän lähteet tähän
 
-## tehtävä2
+## a) Asenna kali
 
-### Lähteet:
-- Tehtävän lähteet tähän
+Tässä kohdassa ei ollut haasteita.
 
-## tehtävä3
+## b) Ei voi kalastaa
+Tehtävässä piti osoittaa, että laite on irti verkosta. Otin netin pois Kali virtuaalikoneesta ja testasin sekä selailemella että ping komennolla:
+PING
 
-### Lähteet:
-- Tehtävän lähteet tähän
+BROWSER
 
-## tehtävä3
+## c) Wireshark
+Kali Linuxissa on Wireshark valmiiksi asennettuna. Ei siis tarvinnut tehdä asennustoimenpiteitä. 
+Käynnistin Wiresharkin ja valitsin "eth0" interfacen. Tämän jälkeen selailin hieman verkossa saadakseni luotua liikennettä. Samalla näin Wiresharkiin ilmestyvän dataa. Liikennettä näkyi joten homma rokkaa:
 
-### Lähteet:
-- Tehtävän lähteet tähän
+
    
-## tehtävä4
+## d) Oikeesti TCP/IP
+TCPIP1
+Ylemmässä kuvassa näkyy kaikki 4 kerrosta: 1. Link Layer 2. Internet Layer 3. Transport Layer 4. Application Layer
+ - Link Layer: Link Layer kohdassa näkyy destination mac address ja source mac address.
+ - Internet Layer: Tässä kohdassa näkyy source ip address ja destination ip address. Eli mihin ip osoitteeseen paketti on matkalla ja mistä se on tulossa.
+ - Transport layer: tässä näkyy käytetty protokolla eli TCP. Lähtöportti sekä kohdeportti. 
+ - Application Layer: Siitä näkee että kyseessä on HTTP protokolla. Tarkemmista tiedoista löytyy myös palvelin ja data mitä siirretään. 
+### Lähteet:
+- Tehtävän lähteet tähän
+
+## e) Mitäs tuli surffailtua?
+Tutkailtuani kaappausta ensimmäinen ajatukseni oli, että kyseessä oli kirjautuminen johonkin. Ensin otetaan yhteys itse sivulle ja tämän jälkeen kirjaudutaan sinne sisään. En kuitenkaan ole tästä täysin varma. Itse kaappaus kestää vajaan 8 sekuntia joten ajallisestikin se voisi täsmätä. Vain yksi kone ottaa yhteyttä palvelimille jotka vastailevat. Tässä käytetään TCP protokollaa, TLS protokollaa, ARP protokollaa, DNS protokollaa, IP protokollaa, HTTP protokollaa, UDP protokollaa. Itse kaappaus on aika pieni.
 
 ### Lähteet:
 - Tehtävän lähteet tähän
 
-## tehtävä5
+## f) Mitä selainta käyttäjä käyttää?
+Selailin pitkään läpi paketteja. En onnistunut löytämään yhtään HTTP pakettia ilman TLS salausta. En siis näe salaamatonta user-agent kenttää josta saisin tiedot tähän. En myöskään löytänyt toista tapaa selvittää selainta tai verkkokorttia. 
+
+### Lähteet:
+- Tehtävän lähteet tähän
+
+## f) Mitä verkkokorttia käyttäjä käyttää?
+Kokeilin MAC osoitteella löytää OUI hausta verkkokortin merkkiä. En kuitenkaan saanut tuloksia. 
+
+### Lähteet:
+- Tehtävän lähteet tähän
+
+## f) Millä weppipalvelimilla käyttäjä on selaillut?
+Ainakin terokarvinen.com, google.com,  
+
+### Lähteet:
+- Tehtävän lähteet tähän
+
+
+## g) Analyysi
+
 
 ### Lähteet:
 - Tehtävän lähteet tähän

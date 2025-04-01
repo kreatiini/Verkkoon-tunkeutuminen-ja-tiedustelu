@@ -86,6 +86,18 @@ Ainakin terokarvinen.com, google.com,
 
 
 ## g) Analyysi
+Valitsin tähän 2 tcp kättelyn pakettia.
+Ensimmäinen paketti:
+ - Ethernet kohta: Siitä näkee Lähde MAC osoitteen ja kohteen MAC osoitteen. 
+ - Internet Protocol Version 4: Kertoo että käytössä on IPV4. PAketti on lähtenyt osoitteesta 10.0.2.15 ja kohde on 216.58.209.195. Siinä näkyy myös Time To Live joka on 64. Niin monta ''hyppyä'' paketti tekee ennenkuin se putoaa pois. Siitä näkee myös headerin ja paketin koon. Näkyy myös että paketti tulee TCP protokollan kautta. Checksumin avulla tarkistetaan onko paketti korruptoitunut.
+- TCP kohdassa näkyy lähtöportti ja kohdeportti. Siinä näkyy myös sequence number joka kertoo monesko TCP yhteys on kyseessä. Tämä on ensimmäinen.
+Tiedoista näkee että tämä keskustelu on kesken eli tässä vaiheessa 3 way handshake on vielä kesken. Sieltä löytyy myös Header osion koko ja liput. Eli nyt on kyseessä SYN pyyntö ennen tiedon siirtoa. Client ja Server varmistuvat siis että tiedonsiirto voi alkaa. 
+
+Toinen paketti:
+Toisessa paketissa on kyseessä SYN ACK paketti. 
+- Ethernet kentästä näkee taas lähtö ja kohde MAC osoitteet. 
+- Internet Protocol kentästä näkyy lähtö ja kohde IP osoitteet. Nyt siis nämä ovat toisinpäin kuin edellisessä paketissa.  TTL kenttä pysyy samana sillä 64 on yleinen oletus TTL.
+- TCP kentässä myös portit ovat kääntyneet tietysti toisinpäin. Nyt kyseessä on SYN+ACK. Sequence number pysyy samana sillä kyseessä on edelleen sama kättely. Wireshark kertoo myös että tämä on ACK segment edelliseen pakettiin liittyen. 
 
 
 ### Lähteet:

@@ -1,7 +1,7 @@
 # h1 Sniff
 
 ## Tiivistelmä tehtävästä, tehtävänannot ja oman tietokoneen tiedot
-Tähän tulee tiivistelmä 
+
 
 ### Tehtävänanto:
        x) Lue ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)
@@ -30,9 +30,19 @@ Tähän tulee tiivistelmä
 - Operating System: Kali Linux
 
 ## x) Lue ja tiivistä
+### Wireshark - Getting Started (Karvinen 2025)
+ - Wiresharkissa on mahdollista suodattaa näkyviä paketteja esimerkiksi protokollien tai osoitteiden mukaan.
+ - Wiresharkista löytyy myös hyödyllisiä tietoja tiivistelmien muodossa kuten eri hostit joita kyseisessä kaappauksessa on
+ - On myös mahdollista tallentaa oma kaappaus ja tarkastella sitä myöhemmin
+
+### Network interface names on Linux (Karvinen 2025)
+- Network interface ei tarkoita samaa kuin network card sillä interface ei välttämättä ole fyysinen.
+- wl on WLAN, en on Ethernet ja lo on loopback
+- ip a ja ip route komennoilla voi katsoa omat network interfacet.
 
 ### Lähteet:
-- Tehtävän lähteet tähän
+- Wireshark getting started (Karvinen 2025) Luettavissa: https://terokarvinen.com/wireshark-getting-started/ Luettu 1.4.2025
+- Network Interface names on Linux (Karvinen 2025) Luettavissa: https://terokarvinen.com/network-interface-linux/ Luettu 1.4.2025
 
 ## a) Asenna kali
 

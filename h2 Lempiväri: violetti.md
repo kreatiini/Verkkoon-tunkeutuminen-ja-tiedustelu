@@ -1,6 +1,6 @@
 # h2 Lempiväri: violetti
 ## Tiivistelmä tehtävästä, tehtävänannot ja oman tietokoneen tiedot
-Tähän tulee tiivistelmä 
+Osa tehtävistä oli haasteellisia. Aika loppui myös kesken vaikka tein tehtävää useaan otteeseen. Aika loppui kesken g kohdassa. Korjaan lähteet kun saan leikepöydän kuntoon. Teen myös tehtävät loppuun ja merkitsen mitkä on tehty palautksen jälkeen. 
 
 ### Tehtävänanto:
        x) Lue ja vastaa lyhyesti kysymyksiin. Tässä alakohdassa x ei tällä kertaa tarvitse lukea artikkeleita kokonaan, ei tarvitse tiivistää niitä, eikä tehdä testejä koneella.
@@ -118,7 +118,8 @@ Jostain syystä leikepöytä lakkasi toimimasta joten en saa myöskään lähtei
 ### Lähteet:
 - ngrep - network grep. 
 
-  ## tehtävä5
+## g) Agentti
+Seuraavana lähdin perehtymään nmapin user-agentin vaihtoon. Kokeilin ajaa ``sudo nmap -v -A 127.0.0.1/80 http.useragent="MozillaVaan"`` testinä mutta en saanut sitä toimimaan. Ryhdyin pläräämään läpi nmapin skriptejä. Tässä kohtaa alkoi aika loppumaan joten joudun palauttamaan tehtävän keskeneräisenä. Korjaan leikepöydän, lisään kuvat ja lähteet sekä viimeiset osiot ennen luentoa. Tietysti selvästi merkittynä mitkä on tehty palautusajan jälkeen myöhempänä muokkauksena.
 
 ### Lähteet:
 - Tehtävän lähteet tähän
